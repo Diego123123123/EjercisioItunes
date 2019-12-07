@@ -1,12 +1,14 @@
-<div class="field">
-  <input id="switchThinColorDefault" [(ngModel)]="areColumnsSortedAscendently" type="checkbox" name="switchThinColorDefault" class="switch is-thin" checked="checked">
-  <label for="switchThinColorDefault">Switch default</label>
-</div>
-<input [(ngModel)]="searchedArtist" type="text">
-<button (click)="search()">Search</button>
-<div class="table-searching" *ngIf="searhingResult != undefined">
-  <table class="table">
-    <thead *ngIf="areColumnsSortedAscendently">
+<navigation-bar></navigation-bar>
+<div class="container">
+  <input [(ngModel)]="searchedArtist" class="input is-primary" type="text" placeholder="WHAT ARE YOU LOOKING FOR"><br><br>
+  <button (click)="search()" class="button is-primary is-pulled-right">Search</button>
+  <input id="switchThinColorDefault" [(ngModel)]="areColumnsSortedAscendently" type="checkbox" name="switchThinColorDefault" class="switch is-large">
+  <label for="switchThinColorDefault">A-Z</label>
+  <br>
+  <hr>
+  <div class="table-searching" *ngIf="searhingResult != undefined">
+    <table class="table">
+      <thead *ngIf="areColumnsSortedAscendently">
       <tr>
         <th><abbr>Album Name</abbr></th>
         <th><abbr>Artist Name</abbr></th>
@@ -15,17 +17,17 @@
         <th><abbr>Song Name</abbr></th>
         <th><abbr>Time</abbr></th>
       </tr>
-    </thead>
-    <thead *ngIf="!areColumnsSortedAscendently">
-    <tr>
-      <th><abbr>Time</abbr></th>
-      <th><abbr>Song Name</abbr></th>
-      <th><abbr>Price</abbr></th>
-      <th><abbr>Image Cover</abbr></th>
-      <th><abbr>Artist Name</abbr></th>
-      <th><abbr>Album Name</abbr></th>
-    </tr>
-    </thead>
+      </thead>
+      <thead *ngIf="!areColumnsSortedAscendently">
+      <tr>
+        <th><abbr>Time</abbr></th>
+        <th><abbr>Song Name</abbr></th>
+        <th><abbr>Price</abbr></th>
+        <th><abbr>Image Cover</abbr></th>
+        <th><abbr>Artist Name</abbr></th>
+        <th><abbr>Album Name</abbr></th>
+      </tr>
+      </thead>
       <tbody *ngFor="let result of searhingResult">
       <tr *ngIf="areColumnsSortedAscendently">
         <td>{{result.collectionName}}</td>
@@ -63,5 +65,6 @@
         </td>
       </tr>
       </tbody>
-  </table>
+    </table>
+  </div>
 </div>
