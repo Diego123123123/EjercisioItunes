@@ -1,8 +1,12 @@
+<div class="field">
+  <input id="switchThinColorDefault" [(ngModel)]="areColumnsSortedAscendently" type="checkbox" name="switchThinColorDefault" class="switch is-thin" checked="checked">
+  <label for="switchThinColorDefault">Switch default</label>
+</div>
 <input [(ngModel)]="searchedArtist" type="text">
 <button (click)="search()">Search</button>
 <div class="table-searching" *ngIf="searhingResult != undefined">
   <table class="table">
-    <thead>
+    <thead *ngIf="areColumnsSortedAscendently">
       <tr>
         <th><abbr>Album Name</abbr></th>
         <th><abbr>Artist Name</abbr></th>
@@ -12,18 +16,18 @@
         <th><abbr>Time</abbr></th>
       </tr>
     </thead>
-    <tfoot>
-      <tr>
-        <th><abbr>Album Name</abbr></th>
-        <th><abbr>Artist Name</abbr></th>
-        <th><abbr>Image Cover</abbr></th>
-        <th><abbr>Price</abbr></th>
-        <th><abbr>Song Name</abbr></th>
-        <th><abbr>Time</abbr></th>
-      </tr>
-    </tfoot>
-    <tbody *ngFor="let result of searhingResult">
-      <tr>
+    <thead *ngIf="!areColumnsSortedAscendently">
+    <tr>
+      <th><abbr>Time</abbr></th>
+      <th><abbr>Song Name</abbr></th>
+      <th><abbr>Price</abbr></th>
+      <th><abbr>Image Cover</abbr></th>
+      <th><abbr>Artist Name</abbr></th>
+      <th><abbr>Album Name</abbr></th>
+    </tr>
+    </thead>
+      <tbody *ngFor="let result of searhingResult">
+      <tr *ngIf="areColumnsSortedAscendently">
         <td>{{result.collectionName}}</td>
         <td>{{result.artistName}}</td>
         <td>
@@ -40,6 +44,24 @@
           </audio>
         </td>
       </tr>
-    </tbody>
+      <tr *ngIf="!areColumnsSortedAscendently">
+
+        <td>{{result.trackTimeMillis}}</td>
+        <td>{{result.trackName}}</td>
+        <td>Price of the track: {{result.trackPrice}} <br>Price of the album: {{result.collectionPrice}} </td>
+        <td>
+          <figure class="image is-64x64">
+            <img src="{{result.artworkUrl30}}">
+          </figure>
+        </td>
+        <td>{{result.artistName}}</td>
+        <td>{{result.collectionName}}</td>
+        <td>
+          <audio controls>
+            <source src="{{result.previewUrl}}" type="audio/mpeg">
+          </audio>
+        </td>
+      </tr>
+      </tbody>
   </table>
 </div>

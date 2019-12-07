@@ -12,6 +12,7 @@ export class AppComponent {
   searchedArtist = '';
   searhingResult: Array<SongWrapper>;
   columnNames: ['Image Cover', 'Song Name', 'Artist Name', 'Album Name', 'Time', 'Price'];
+  areColumnsSortedAscendently: boolean;
 
   search() {
     this.itunesService.getObservableByArtist(this.searchedArtist).subscribe((msg: ResultResponse) => {
