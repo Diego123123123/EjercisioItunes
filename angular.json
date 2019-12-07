@@ -23,6 +23,8 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/bulma/css/bulma.min.css",
+              "node_modules/bulma-switch/dist/css/bulma-switch.min.css",
               "src/styles.css"
             ],
             "scripts": []
